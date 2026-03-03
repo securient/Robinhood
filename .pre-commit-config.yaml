@@ -1,0 +1,39 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+    -   id: check-toml
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+        exclude: .*\.(ipynb)$
+    -   id: trailing-whitespace
+-   repo: https://github.com/kynan/nbstripout
+    rev: 0.6.1
+    hooks:
+    -   id: nbstripout
+        files: ".ipynb"
+-   repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+    -   id: isort
+        additional_dependencies: ['toml']
+-   repo: https://github.com/ambv/black
+    rev: 22.10.0
+    hooks:
+    - id: black
+# TODO: re-enable once you figure out how to tell it to ignore darglint noqas
+#-   repo: https://github.com/asottile/yesqa
+#    rev: v1.4.0
+#    hooks:
+#    -   id: yesqa
+# TODO: re-enable darglint but it currently makes flake8 un-reasonably slow
+-   repo: https://github.com/PyCQA/flake8
+    rev: 6.0.0
+    hooks:
+    -    id: flake8
+         additional_dependencies: ['flake8-bugbear==22.10.27', 'flake8-docstrings==1.6.0']  # , 'darglint==1.8.1']
+# TODO: re-enable mypy (need to run as its own step in CI since it requires deps)
+#-   repo: https://github.com/pre-commit/mirrors-mypy
+#    rev: v0.991
+#    hooks:
+#    -   id: mypy
